@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS Test Frontend</title>
+</head>
+<body>
+  <h1>CORS Test</h1>
+  <button onclick="callAPI()">Call Backend API</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function callAPI() {
+      const resultBox = document.getElementById("result");
+      resultBox.textContent = "Loading...";
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/");
+        const data = await response.json();
+        resultBox.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        resultBox.textContent = "Error: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
